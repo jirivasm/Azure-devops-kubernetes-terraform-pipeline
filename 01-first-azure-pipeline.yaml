@@ -9,11 +9,21 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- Stage: build
+  jobs:
+  - job: build
+    steps:
+    - bash: echo building the app(docker) container
+    - bash: echo second ...
+- stage: Test
+  jobs:
+  - job: test
+    steps:
+    - bash: echo testing the app with sonarcloud sonarqube, etc
+- stage: Deploy
+  jobs:
+  - job: deploy
+  steps:
+    - bash: echo deploy
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
