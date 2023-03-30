@@ -25,5 +25,5 @@ stages:
   jobs:
   - job: deploy
     steps:
-    - bash: echo deploy
+    - bash: echo deploy with kubernetes
 
