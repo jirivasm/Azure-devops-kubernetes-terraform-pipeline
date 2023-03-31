@@ -17,7 +17,7 @@ stages:
     - bash: echo "building the app docker container"
     - bash: echo $(PIPELINELEVELVARIABLE)
     - bash: echo $(System.DefaultWorkingDirectory)
-    - bash: ls R $(System.DefaultWorkingDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtifactStagingDirectory)
     - bash: java --version
     - bash: python --version
