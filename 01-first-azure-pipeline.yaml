@@ -14,13 +14,8 @@ stages:
   jobs:
   - job: build
     steps:
-<<<<<<< HEAD
     - bash: echo "building the app docker container"
-    - bash: echo second ...
-=======
-    - bash: echo building the app(docker) container
     - bash: echo $(PIPELINELEVELVARIABLE)
->>>>>>> ce9cd156610faa44af5059890aeff6a0d06237cd
 - stage: Test
   dependsOn: build
   jobs:
