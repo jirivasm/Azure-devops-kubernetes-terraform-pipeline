@@ -14,14 +14,16 @@ stages:
   jobs:
   - job: build
     steps:
-    - bash: echo building the app(docker) container
+    - bash: echo "building the app docker container"
     - bash: echo second ...
 - stage: Test
+  dependsOn: build
   jobs:
   - job: test
     steps:
     - bash: echo testing the app with sonarcloud sonarqube, etc
 - stage: Deploy
+  dependsOn: test
   jobs:
   - job: deploy
     steps:
