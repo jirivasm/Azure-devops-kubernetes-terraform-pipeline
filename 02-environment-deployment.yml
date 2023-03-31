@@ -19,9 +19,9 @@ pool:
 stages:
   - stage: Build
     jobs:
-    - jobs: buildJob
+    - job: buildJob
       steps:
-      - bash: echo "Do the Job"
+      - bash: echo "Do the build"
   - stage: DevDeploy
     jobs:
     - deployment: Dev
@@ -31,7 +31,7 @@ stages:
           deploy:
             steps:
               - script: echo "deploy to Dev"
-    - stage: QADeploy
+  - stage: QADeploy
     jobs:
     - deployment: QA
       environment: QADeployJob
@@ -40,6 +40,3 @@ stages:
           deploy:
             steps:
               - script: echo "deploy to QA"
-
-- script: echo Runnig on $(operatingSystem)
-  displayName: 'Run a one-line script'
