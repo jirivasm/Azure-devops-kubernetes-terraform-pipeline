@@ -16,16 +16,35 @@ stages:
     steps:
     - bash: echo "building the app docker container"
     - bash: echo $(PIPELINELEVELVARIABLE)
-- stage: Test
-  dependsOn: build
-  jobs:
-  - job: test
-    steps:
-    - bash: echo testing the app with sonarcloud sonarqube, etc
-- stage: Deploy
-  dependsOn: test
-  jobs:
-  - job: deploy
-    steps:
-    - bash: echo deploy with kubernetes
+    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: ls R $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.ArtifactStagingDirectory)
+    - bash: java --version
+    - bash: python --version
+    - bash: node --version
+    - bash: mvn --version
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+
+
+# - stage: Test
+#   dependsOn: build
+#   jobs:
+#   - job: test
+#     steps:
+#     - bash: echo testing the app with sonarcloud sonarqube, etc
+# - stage: Deploy
+#   dependsOn: test
+#   jobs:
+#   - job: deploy
+#     steps:
+#     - bash: echo deploy with kubernetes
 
