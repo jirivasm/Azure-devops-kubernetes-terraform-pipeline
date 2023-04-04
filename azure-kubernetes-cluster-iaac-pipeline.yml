@@ -21,7 +21,7 @@ steps:
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'centralus'
-    backendAzureRmStorageAccountName: 'jirivasmbackendstorageaccount'
+    backendAzureRmStorageAccountName: 'jirivasmbackendstorage'
     backendAzureRmContainerName: 'jirivasmbackendcontainer'
     backendAzureRmKey: 'kubernetes-dev.tfstate'
     allowTelemetryCollection: true
