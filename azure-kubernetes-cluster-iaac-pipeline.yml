@@ -15,7 +15,7 @@ steps:
   inputs:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
-    commandOptions: '-var client_id=$(client_id) -var client_secret=$(clinet_secret) -var ssh_public_key=$(public_key.secureFilePath)'
+    #commandOptions: '-var client_id=$(client_id) -var client_secret=$(clinet_secret) -var ssh_public_key=$(public_key.secureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-service-connection'
     ensureBackend: true
@@ -25,3 +25,10 @@ steps:
     backendAzureRmContainerName: 'jirivasmbackendcontainer'
     backendAzureRmKey: 'kubernetes-dev.tfstate'
     allowTelemetryCollection: true
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
+    environmentServiceName: 'azure-service-connection'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(clinet_secret) -var ssh_public_key=$(public_key.secureFilePath)'
+
