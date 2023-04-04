@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo K8s Terraform azure
+  displayName: 'Run a one-line script'
+- task: DownloadSecureFile@1
+  name: public_key
+  inputs:
+    secureFile: 'azure-secret-key.pub'
+- task: TerraformCLI@0
+  inputs:
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(clinet_secret) -var ssh_public_key=$(public_key.secureFilePath)'
+    backendType: 'azurerm'
+    backendServiceArm: 'azure-service-connection'
+    ensureBackend: true
+    backendAzureRmResourceGroupName: 'terraform-backend-rg'
+    backendAzureRmResourceGroupLocation: 'centralus'
+    backendAzureRmStorageAccountName: 'jirivasmbackendstorageaccount'
+    backendAzureRmContainerName: 'jirivasmbackendcontainer'
+    backendAzureRmKey: 'kubernetes-dev.tfstate'
+    allowTelemetryCollection: true
