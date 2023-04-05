@@ -1,0 +1,31 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo kubernetes pipeline
+
+- task: DownloadSecureFile@1
+  name: publicKey
+  inputs:
+    secureFile: 'id_rsa.pub'
+    
+- task: TerraformCLI@0
+  inputs:
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publicKey.secureFilePath)'
+    backendType: 'azurerm'
+    backendServiceArm: 'azure-service-connection'
+    backendAzureRmResourceGroupName: 'terraform-rg'
+    backendAzureRmStorageAccountName: 'jirivasmstorage'
+    backendAzureRmContainerName: 'jirivasmcontainer'
+    backendAzureRmKey: 'terraform.tfstate'
+    allowTelemetryCollection: true
