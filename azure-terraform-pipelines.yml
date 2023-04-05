@@ -25,6 +25,7 @@ steps:
     backendServiceArm: 'azure-service-connection'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-rg'
+    backendAzureRmResourceGroupLocation: 'centralus'
     backendAzureRmStorageAccountName: 'jirivasmstorage'
     backendAzureRmContainerName: 'jirivasmcontainer'
     backendAzureRmKey: 'terraform.tfstate'
