@@ -20,11 +20,11 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
-    #commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publicKey.secureFilePath)'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
     backendType: 'azurerm'
     backendServiceArm: 'azure-service-connection'
     backendAzureRmResourceGroupName: 'terraform-rg'
     backendAzureRmStorageAccountName: 'jirivasmstorage'
     backendAzureRmContainerName: 'jirivasmcontainer'
     backendAzureRmKey: 'terraform.tfstate'
+    allowTelemetryCollection: true
