@@ -23,6 +23,7 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
     backendType: 'azurerm'
     backendServiceArm: 'azure-service-connection'
+    ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-rg'
     backendAzureRmStorageAccountName: 'jirivasmstorage'
     backendAzureRmContainerName: 'jirivasmcontainer'
